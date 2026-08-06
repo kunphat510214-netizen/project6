@@ -1,0 +1,75 @@
+ขั้นตอนที่ 2 ออกแบบ
+class DrinkOrder:
+  def __init__(self, order_id, customer_name, menu_name, drink_type, size, topping, sweetness_level):
+    self.order_id = order_id
+    self.customer_name = customer_name
+    self.menu_name = menu_name
+    self.drink_type = drink_type
+    self.size = size
+    self.topping = topping
+    self.sweetness_level = sweetness_level #ระดับความหวาน: 0%, 25%, 50%, 100%, 125% (ไม่คิดเงิน)
+    self.status = "รอดำเนินการ"
+
+  def calculate_price(self):
+    base_prices = {
+        # กาแฟ
+        "อเมริกาโน่" : 45,
+        "ลาเต้" : 50,
+        "คาปูชิโน่" : 50,
+        "เอสเพรสโซ่" : 50,
+        "มอคค่า" : 50,
+
+        # ชาและนม
+        "ชาเขียว" : 45,
+        "ชาไทย" : 45,
+        "มัทฉะลาเต้" : 50,
+        "ช็อกโกแลต" : 50,
+        "นมสด" : 40,
+
+        # โซดา
+        "สตอว์เบอร์รี่โซดา" : 40,
+        "บลูฮาวายโซดา" : 40,
+        "ยูซุโซดา" : 40
+    }
+
+    type_prices = {
+        "ร้อน" : 0,
+        "เย็น" : 5,
+        "ปั่น" : 10
+    }
+
+    size_prices = {
+        "S" : 0,
+        "M" : 10,
+        "L" : 20
+    }
+
+    topping_prices = {
+        "ไม่มี" : 0,
+        "ไข่มุก" : 5,
+        "วิปครีม" : 15,
+        "ครีมชีส " : 20
+    }
+
+    total = base_prices[self.menu_name] + type_prices[self.drink_type] + size_prices[self.size] + topping_prices[self.topping]
+    return total
+
+  def make_done(self):
+   self.status = "เสร็จแล้ว"
+
+# ทดลองรัน
+order1 = DrinkOrder(
+    order_id = 1,
+    customer_name = "จูฮุน",
+    menu_name = "ลาเต้",
+    drink_type = "เย็น",
+    size = "M",
+    topping = "วิปครีม",
+    sweetness_level = "50%",
+)
+
+print(f"ราคารวม: {order1.calculate_price()} บาท")
+print(f"ออเดอร์คิวที่ {order1.order_id} ({order1.customer_name}) - {order1.menu_name}{order1.drink_type} (หวาน {order1.sweetness_level}) {order1.status}")
+
+order1.make_done()
+print(f"ออเดอร์คิวที่ {order1.order_id} ({order1.customer_name}) - {order1.menu_name}{order1.drink_type} (หวาน {order1.sweetness_level}) {order1.status}!")
