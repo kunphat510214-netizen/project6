@@ -1,0 +1,33 @@
+# project6
+# ขั้นที่ 4 Loop
+random.seed(1)
+
+orders = []
+
+menu_names = ["อเมริกาโน่", "ลาเต้", "คาปูชิโน่", "มอคค่า", "ชาเขียว"]
+drink_types = ["กาแฟ", "ชา"]
+sizes = ["S", "M", "L"]
+toppings = ["ไม่มี", "ไข่มุก", "วิปครีม", "เจลลี่"]
+
+for i in range(1, 301):
+
+    customer_name = generation_customer_name()
+    menu_name = random.choice(menu_names)
+    drink_type = random.choice(drink_types)
+    size = random.choice(sizes)
+    topping = random.choice(toppings)
+    sweetness_level = random_sweetness_level()
+
+    order = DrinkOrder(
+        i,
+        customer_name,
+        menu_name,
+        drink_type,
+        size,
+        topping,
+        sweetness_level
+    )
+
+    orders.append(order)
+
+print(f"จำลองออเดอร์เสร็จแล้วทั้งหมด {len(orders)} รายการ")
