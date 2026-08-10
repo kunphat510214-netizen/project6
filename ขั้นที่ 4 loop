@@ -1,5 +1,6 @@
 # project6
 # ขั้นที่ 4 Loop
+# ขั้นที่ 4 Loop
 random.seed(1)
 
 orders = []
