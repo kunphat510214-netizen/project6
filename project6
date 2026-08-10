@@ -4,7 +4,6 @@
   "metadata": {
     "colab": {
       "provenance": [],
-      "authorship_tag": "ABX9TyOjP4GnpMgwWfKMo8Uj5J1e",
       "include_colab_link": true
     },
     "kernelspec": {
@@ -23,7 +22,7 @@
         "colab_type": "text"
       },
       "source": [
-        "<a href=\"https://colab.research.google.com/github/kunphat510214-netizen/project6/blob/main/project6\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+        "<a href=\"https://colab.research.google.com/github/kunphat510214-netizen/project6/blob/Project6/project6\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
       ]
     },
     {
@@ -97,7 +96,8 @@
         "        \"ไม่มี\" : 0,\n",
         "        \"ไข่มุก\" : 5,\n",
         "        \"วิปครีม\" : 15,\n",
-        "        \"ครีมชีส\" : 20\n",
+        "        \"ครีมชีส\" : 20,\n",
+        "        \"เจลลี่\" : 5\n",
         "    }\n",
         "\n",
         "    total = base_prices[self.menu_name] + type_prices[self.drink_type] + size_prices[self.size] + topping_prices[self.topping]\n",
@@ -136,7 +136,7 @@
           "base_uri": "https://localhost:8080/"
         },
         "id": "VYudadE4JiuN",
-        "outputId": "6d12efbd-0137-405d-a461-8e5f57afccd9"
+        "outputId": "bf300068-c3fe-4f07-c3ba-d35ffca309fe"
       },
       "execution_count": null,
       "outputs": [
@@ -175,7 +175,7 @@
       "metadata": {
         "id": "TI6t3elIG2K6"
       },
-      "execution_count": null,
+      "execution_count": 39,
       "outputs": []
     },
     {
@@ -188,7 +188,7 @@
           "base_uri": "https://localhost:8080/"
         },
         "id": "3BZTOz16G_T1",
-        "outputId": "b6e1acec-f057-46dc-e6e4-2e8b8347f75f"
+        "outputId": "90a43ff5-b552-43a2-918b-0d11e81eb5f2"
       },
       "execution_count": null,
       "outputs": [
@@ -242,7 +242,7 @@
           "base_uri": "https://localhost:8080/"
         },
         "id": "Gywkw3mvVDAI",
-        "outputId": "0f795d86-1d15-476b-c8b3-8bac1a468cc0"
+        "outputId": "5d298b90-b4e4-452c-dda0-a8e52fcc95e7"
       },
       "execution_count": null,
       "outputs": [
@@ -251,59 +251,6 @@
           "name": "stdout",
           "text": [
             "จำลองออเดอร์เสร็จแล้วทั้งหมด 300 รายการ\n"
-          ]
-        }
-      ]
-    },
-    {
-      "cell_type": "code",
-      "source": [
-        "#ขั้นตอนที่ 5\n",
-        "import pandas as pd\n",
-        "\n",
-        "# 1. ใช้ List Comprehension แปลง Object ในตัวแปร orders ของเพื่อนให้กลายเป็น Dictionary\n",
-        "records = [\n",
-        "    {\n",
-        "        \"order_id\": o.order_id,\n",
-        "        \"customer_name\": o.customer_name,\n",
-        "        \"menu_name\": o.menu_name,\n",
-        "        \"drink_type\": o.drink_type,\n",
-        "        \"size\": o.size,\n",
-        "        \"topping\": o.topping,\n",
-        "        \"sweetness_level\": o.sweetness_level,\n",
-        "        \"price\": o.calculate_price(),   # สั่งให้เรียก method เพื่อคำนวณราคาออกมาเป็นตัวเลข\n",
-        "        \"status\": o.status\n",
-        "    }\n",
-        "    for o in orders   # ดึงข้อมูลจาก list ที่ชื่อ orders จากขั้นที่ 4 ทีละรายการ\n",
-        "]\n",
-        "\n",
-        "# 2. นำข้อมูลที่แปลงแล้วมาสร้างเป็นตาราง DataFrame ของ pandas\n",
-        "df = pd.DataFrame(records)\n",
-        "\n",
-        "# 3. บันทึกข้อมูลตารางลงไฟล์ CSV (ตั้งชื่อไฟล์ว่า coffee_orders.csv)\n",
-        "df.to_csv(\"coffee_orders.csv\", index=False)\n",
-        "\n",
-        "print(\"บันทึกไฟล์ CSV สำเร็จ ขนาด:\", df.shape)\n",
-        "\n",
-        "# 4. แสดงผลตาราง 5 แถวแรกเพื่อเช็คความถูกต้อง\n",
-        "df.head()"
-      ],
-      "metadata": {
-        "colab": {
-          "base_uri": "https://localhost:8080/",
-          "height": 106
-        },
-        "id": "BqwgfoPwP-_D",
-        "outputId": "506a9eae-6b3d-488c-fb01-405446d13686"
-      },
-      "execution_count": null,
-      "outputs": [
-        {
-          "output_type": "error",
-          "ename": "SyntaxError",
-          "evalue": "illegal target for annotation (718805835.py, line 1)",
-          "traceback": [
-            "\u001b[0;36m  File \u001b[0;32m\"/tmp/ipykernel_949/718805835.py\"\u001b[0;36m, line \u001b[0;32m1\u001b[0m\n\u001b[0;31m    \"size\": o.size,\u001b[0m\n\u001b[0m    ^\u001b[0m\n\u001b[0;31mSyntaxError\u001b[0m\u001b[0;31m:\u001b[0m illegal target for annotation\n"
           ]
         }
       ]
