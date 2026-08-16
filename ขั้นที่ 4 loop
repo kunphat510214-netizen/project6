@@ -1,34 +1,27 @@
-# project6
-# ขั้นที่ 4 Loop
-# ขั้นที่ 4 Loop
-random.seed(1)
-
+# ขั้นที่ 4: จำลองธุรกรรมทีละรายการด้วย loop อย่างน้อย 300 รายการ
+random.seed(612104)
+members = {
+    f"M{i:03d}": Member(f"M{i:03d}", generate_customer_name(), random.randint(0, 9))
+    for i in range(1, 61)
+}
+queue_system = QueueSystem()
 orders = []
 
-menu_names = ["อเมริกาโน่", "ลาเต้", "คาปูชิโน่", "มอคค่า", "ชาเขียว"]
-drink_types = ["กาแฟ", "ชา"]
-sizes = ["S", "M", "L"]
-toppings = ["ไม่มี", "ไข่มุก", "วิปครีม", "เจลลี่"]
-
 for i in range(1, 301):
+    member = random.choice(list(members.values())) if random.random() < 0.40 else None
+    order = build_random_order(i, member)
+    order.confirm_payment(random.choice(DrinkOrder.PAYMENT_METHODS))
+    if member:
+        member.add_points()
 
-    customer_name = generation_customer_name()
-    menu_name = random.choice(menu_names)
-    drink_type = random.choice(drink_types)
-    size = random.choice(sizes)
-    topping = random.choice(toppings)
-    sweetness_level = random_sweetness_level()
-
-    order = DrinkOrder(
-        i,
-        customer_name,
-        menu_name,
-        drink_type,
-        size,
-        topping,
-        sweetness_level
-    )
-
+    queue_system.send_to_kds(order)
+    queue_system.start_preparing(order)
+    order.wait_minutes = random.randint(2, 18)
+    queue_system.call_queue(order)
+    queue_system.complete_order(order)
     orders.append(order)
 
-print(f"จำลองออเดอร์เสร็จแล้วทั้งหมด {len(orders)} รายการ")
+assert len(orders) == 300
+assert len(queue_system.active_orders) == 0
+print(f"จำลองครบ {len(orders)} ออเดอร์ และส่งมอบทุกคิวเรียบร้อย")
+     
